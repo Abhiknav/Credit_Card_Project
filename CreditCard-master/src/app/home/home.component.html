@@ -1,0 +1,123 @@
+<ng-container>
+
+    <div class="checkout_form">
+      <div class="card_number" id="card-container">
+          <label> Card Number</label>
+          <input type="text" class="input" id="cardNumber" 
+          maxlength="19" 
+          [(ngModel)]="CardNumber" 
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+        > 
+       
+       </div>
+      <div class="card_name" id="card-container">
+          <label> Card Holder</label>
+          <input type="text" class="input" id="cardName" maxlength="25" [(ngModel)]="CardHolder"
+          onkeypress="return !((event.charCode < 65 || event.charCode> 90) && 
+          (event.charCode < 97 || event.charCode > 123) && 
+          event.charCode!= 32)" > 
+      </div>
+      <div class="card_grp_label">  
+        <div class="expiry_date">
+          <label> Expiration Date</label>
+        </div>
+        <div class="cvc">
+          <label> CVV</label>
+        </div>
+      </div>
+      <div class="card_grp">  
+        <div class="expiry_date">
+         <select [(ngModel)]="ExpiresMM" class="expiry_input">
+              <option selected value=''>Month</option>
+              <option value='01'>01</option>
+              <option value='02'>02</option>
+              <option value='03'>03</option>
+              <option value='04'>04</option>
+              <option value='05'>05</option>
+              <option value='06'>06</option>
+              <option value='07'>07</option>
+              <option value='08'>08</option>
+              <option value='09'>09</option>
+      
+        </select>
+          <select [(ngModel)]="ExpiresYY" class="expiry_input" id="year">
+            <option selected value=''>Year</option>
+          </select>
+        </div>
+         <div class="cvc">
+          <input type="text" class="cvc_input" data-mask="000" placeholder="000"
+           [(ngModel)]="cvv"
+           maxlength="3" 
+           (focus)="cardClicked()"
+           (focusout)="cardClicked()" 
+           id="cvvinput"
+           onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+         </div>
+      </div>
+      <div class="btn">
+        Submit
+      </div>
+  </div>
+</ng-container>
+<div class="card">
+  <div class="front">
+    <div class="card_form">
+      <div class="ccard_grp">   
+        <div class="expiry_date">
+          <div class="chip">
+            <img src="./assets/chip.png" alt="chip" width="100%" height="100%">
+          </div>
+         </div>
+        <div class="visacvc">
+          <div class="visa">
+            <img src="./assets/visa.png" alt="chip" width="100%" height="100%">
+          </div>
+        </div>
+      </div>
+      <div class="ccard_number" id="card-container">
+          <p class="input"  >{{hash}}</p>
+      </div>
+      <div class="ccard_grp">   
+        <div class="expiry_date">
+          <p class="expiry_input">Card Holder</p>
+         </div>
+        <div class="cvc">
+          <p class="cvc_input" >Expires</p>
+        </div>
+      </div>
+      <div class="ccard_grp">   
+        <div class="expiry_date">
+          <h1 class="expiry_input">{{CardHolder ? CardHolder : "FULL NAME" }}</h1>
+         </div>
+        <div class="cvc">
+          <h1 class="cvc_input" >{{ExpiresMM ? ExpiresMM : "MM" }}/{{ExpiresYY ? ExpiresYY.substring(2) : "YY" }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="back">
+    <div class="card_form">
+    
+      <div class="ccard_number" id="card-container">
+          <p style="color:black" class="input" id="cvv" >{{cvv}}</p>
+      </div>
+      <div class="ccard_grp">   
+        <div class="expiry_date">
+          <div class="chip">
+            <!-- <img src="src/assets/chip.png" alt="chip" > -->
+          </div>
+         </div>
+        <div class="cvc">
+          <div class="visa">
+            <img src="./assets/visa.png" alt="chip" width="100%" height="100%">
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  </div>
+</div> 
+
+
+  
+  
